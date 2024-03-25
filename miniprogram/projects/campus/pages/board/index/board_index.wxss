@@ -1,0 +1,265 @@
+@import "../../../style/skin.wxss";
+
+.main {
+	padding: 0
+} 
+
+.list {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 25rpx;
+}
+
+.list .item {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 0rpx;
+	background-color: #fff;
+	margin-bottom: 30rpx;
+	align-items: flex-start;
+	border-radius: 20rpx;
+	position: relative;
+	overflow: hidden;
+	box-shadow: unset;
+}
+
+.list .item:nth-child(6n+1) {
+	background-color: #F6B7B5;
+}
+
+.list .item:nth-child(6n+2) {
+	background-color: #ECBB9A;
+}
+
+.list .item:nth-child(6n+3) {
+	background-color: #2980B9;
+}
+
+.list .item:nth-child(6n+4) {
+	background-color: #C29CD2;
+}
+
+.list .item:nth-child(6n+5) {
+	background-color: #73C6B5;
+}
+
+.list .item:nth-child(6n+6) {
+	background-color: #F5DF6A;
+}
+
+.list .item .mark-status {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 24rpx;
+	padding: 6rpx 16rpx;
+	border-bottom-left-radius: 20rpx;
+	border-top-right-radius: 20rpx;
+}
+
+.list .item .mark-mine {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	font-size: 24rpx;
+	padding: 6rpx 16rpx;
+	border-bottom-left-radius: inherit;
+	border-top-right-radius: 20rpx;
+}
+
+.list .top {
+	width: 100%;
+	padding: 25rpx;
+	display: flex;
+}
+
+.list .bottom {
+	width: 100%;
+	padding: 15rpx 25rpx;
+	border-top: 2rpx solid rgba(255, 255, 255, 0.1);
+	display: flex;
+}
+
+.list .bottom .info {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.list .bottom .info>view {
+	width: 25%;
+	border-right: 2rpx dotted rgba(255, 255, 255, 0.3);
+	text-align: center;
+	font-size: 24rpx;
+	color: #fff;
+}
+
+.list .bottom .info>view>text {
+	margin-right: 4rpx;
+}
+
+.list .bottom .info>view:last-child {
+	border-right: 0;
+}
+
+.list .left {
+	width: 60rpx;
+	height: 60rpx;
+	border-radius: 50%;
+	margin-right: 10rpx;
+}
+
+.list .right {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding: 6rpx 10rpx;
+}
+
+.list .right .title {
+	display: flex;
+	padding: 0;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 4rpx;
+	z-index: 9;
+}
+
+.list .right .title .name {
+	font-size: 28rpx;
+	color: #fff;
+}
+
+.list .right .title .date {
+	font-size: 22rpx;
+	color: #bbb;
+}
+
+.list .right .desc {
+	margin-top: 25rpx;
+	width: 100%;
+	display: flex;
+	font-size: 26rpx;
+	line-height: 1.3;
+	color: #fff;
+}
+
+.list .right .pic {
+	margin-top: 20rpx;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.list .right .pic image {
+	height: 120rpx;
+	width: 120rpx;
+	margin-right: 10rpx;
+	margin-bottom: 10rpx;
+	border-radius: 10rpx;
+}
+
+.list .right .pic image.img1 {
+	height: 230rpx;
+	width: 230rpx;
+}
+
+.list .right .pic image.img2 {
+	height: 200rpx;
+	width: 200rpx;
+}
+
+.list .right .pic image.img3,
+.list .right .pic image.img4,
+.list .right .pic image.img5,
+.list .right .pic image.img6,
+.list .right .pic image.img7,
+.list .right .pic image.img8,
+.list .right .pic image.img9 {
+	height: 170rpx;
+	width: 170rpx;
+}
+
+.list .right .line1 {
+	width: 100%;
+	text-align: right;
+	padding: 10rpx 0;
+	font-size: 26rpx;
+}
+
+.list .right .line2 {
+	width: 100%;
+	text-align: right;
+	padding: 0rpx 0;
+	font-size: 22rpx;
+	color: #fff;
+	opacity: .6;
+}
+
+.list .oprt {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	padding: 5rpx 0;
+	margin-top: -10rpx;
+	margin-bottom: 50rpx;
+}
+
+.list .oprt>view {
+	padding: 8rpx 20rpx;
+	font-size: 24rpx;
+	background-color: #f2f2f2;
+	margin-right: 16rpx;
+	border-radius: 8rpx;
+}
+
+.list .oprt>view:last-child { 
+	margin-right: 4rpx; 
+}
+
+.list .oprt>view>text {
+	margin-right: 6rpx;
+}
+
+
+.list .right .data {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	padding: 5rpx 0;
+	margin-top: 10rpx;
+}
+
+.list .right .data>view {
+	padding: 8rpx 30rpx;
+	font-size: 24rpx;
+	background-color: #f2f2f2;
+	margin-right: 16rpx;
+	border-radius: 4rpx;
+}
+
+.list .right .data>view>text {
+	margin-right: 6rpx;
+}
+
+.post {
+	width: 100%;
+	position: fixed;
+	left: 30rpx;
+	bottom: 80rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+
+.post>view {
+	z-index: 999;
+	font-size: 35rpx;
+	background-color: var(--projectColor);
+	color: #fff;
+	padding: 16rpx 160rpx;
+	border-radius: 40rpx;
+}

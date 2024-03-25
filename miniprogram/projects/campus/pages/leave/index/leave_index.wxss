@@ -1,0 +1,141 @@
+@import "../../../style/skin.wxss";
+
+.main {
+	padding: 0
+}
+
+.list {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 20rpx 20rpx 30rpx 20rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.list .item {
+	padding: 22rpx 22rpx;
+	display: flex;
+	border-radius: 10rpx;
+	margin-bottom: 20rpx;
+	position: relative;
+	background-color: #fff;
+	overflow: hidden;
+}
+
+.list .item .mark-mine {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-size: 24rpx;
+	padding: 6rpx 16rpx;
+	border-top-left-radius: 10rpx;
+	border-bottom-right-radius: inherit;
+}
+
+.list .item .left {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.list .item .left .line1 {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	min-height: 100rpx;
+}
+
+.list .item .left .line1 .title {
+	font-size: 28rpx;  
+}
+
+.list .item .left .line-bottom {
+	width: 100%; 
+}
+
+.list .item .left .line2 {
+	width: 100%;
+	font-size: 22rpx;
+	color: #aaa;
+	text-align: left; 
+	font-weight: normal;
+}
+
+.list .item .left .line2>text {
+	margin-right: 15rpx;
+}
+
+.list .item .right {
+	width: 240rpx;
+	height: 170rpx;
+	border-radius: 10rpx;
+	margin-left: 20rpx;
+	position: relative;
+	overflow: hidden;
+}
+
+.list .item .right .status {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 22rpx;
+	padding: 4rpx 8rpx;
+	border-bottom-left-radius: 10rpx;
+	border-top-right-radius: inherit;
+	z-index: 9;
+}
+
+.list .item .right>image {
+	width: inherit;
+	height: inherit;
+	border-radius: inherit;
+}
+
+.list .oprt {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	padding: 5rpx 0;
+	margin-top: -10rpx;
+	margin-bottom: 50rpx;
+}
+
+.list .oprt>view {
+	padding: 8rpx 20rpx;
+	font-size: 24rpx;
+	background-color: #f2f2f2;
+	margin-right: 16rpx;
+	border-radius: 8rpx;
+}
+
+.list .oprt>view:last-child {
+	margin-right: 4rpx;
+}
+
+.list .oprt>view>text {
+	margin-right: 6rpx;
+}
+
+
+.post {
+	width: 100%;
+	position: fixed;
+	left: 30rpx;
+	bottom: 80rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+
+.post>view {
+	z-index: 999;
+	font-size: 35rpx;
+	background-color: var(--projectColor);
+	color: #fff;
+	padding: 16rpx 160rpx;
+	border-radius: 40rpx;
+}

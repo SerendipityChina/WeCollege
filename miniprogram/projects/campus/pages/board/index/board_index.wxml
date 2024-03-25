@@ -1,0 +1,79 @@
+<view wx:if="{{!isLoad}}" class="margin-top load loading text-l load-project"></view>
+<block wx:if="{{isLoad}}">
+	<cmpt-comm-list id="board-list" type="board-list" search="{{search||''}}" _params="{{_params}}" _menus="{{sortMenus}}" _items="{{sortItems}}" route="board/list" isTotalMenu="{{true}}" pulldownType="{{['modal','modal','modal']}}" sortMenusDefaultIndex="{{sortMenusDefaultIndex}}" topBottom="120" placeholder="搜索" bind:list="bindCommListCmpt">
+		<view slot="searchEnd">
+			<button bindtap="bindMyTap" class="btn round bg-project text-white margin-right-s"><text class="icon-moreandroid margin-right-xxs"></text>我的</button>
+		</view>  
+
+		<!-- List Begin -->
+		<view class="list">
+			<block wx:for="{{dataList.list}}" wx:key="k">
+				<view class="item shadow-project">
+					<view wx:if="{{nowUserId==item.BOARD_USER_ID}}" class="mark-mine bg-white">我的</view>
+
+					<view wx:if="{{nowUserId==item.BOARD_USER_ID&&item.BOARD_STATUS==0}}" class="mark-status bg-red">仅自己可见</view>
+
+					<view class="top">
+						<image class="left loading" mode="aspectFill" lazy-load="{{true}}" src="{{item.user.USER_PIC}}"></image>
+						<view class="right">
+							<view class="title">
+								<text class="name text-white text-bold">TO: {{item.BOARD_OBJ.to}} <text wx:if="{{item.BOARD_ORDER==0}}" class="tag small radius bg-pink light">置顶</text></text>
+								<text class="date"></text>
+							</view>
+							<view class="desc"><text>{{item.BOARD_OBJ.desc}}</text></view>
+
+							<view class="pic" wx:if="{{item.BOARD_OBJ.pic}}">
+								<image wx:for="{{item.BOARD_OBJ.pic}}" wx:key="key1" wx:for-item="itm" bindtap="url" data-type="img" data-url="{{itm}}" class="loading  img{{item.BOARD_OBJ.pic.length}}" mode="aspectFill" lazy-load="{{true}}" src="{{itm}}"></image>
+							</view>
+
+							<view wx:if="{{item.BOARD_OBJ.from}}" class="line1 text-white" style="opacity: .9;">From: {{item.BOARD_OBJ.from}}</view>
+							<view class="line2">{{item.BOARD_ADD_TIME}}</view>
+
+
+							<!--<view class="data">
+							<view><text class="icon-attention"></text>{{item.BOARD_VIEW_CNT}}</view>
+							<view bind:tap="bindLikeTap" data-idx="{{index}}" data-id="{{item._id}}"><text class="icon-appreciate{{item.like?'fill text-red':''}}"></text>{{item.BOARD_LIKE_CNT}}</view>
+							<view bind:tap="url" data-url="../../comment/list/comment_list?id={{item._id}}&type=board"><text class="icon-comment"></text>{{item.BOARD_COMMENT_CNT}}</view>
+							<view bind:tap="bindFavTap" data-idx="{{index}}" data-id="{{item._id}}"><text class="icon-favor{{item.fav?'fill text-red':''}}"></text>{{item.BOARD_FAV_CNT}}</view>
+						</view>-->
+						</view>
+					</view>
+					<view class="bottom">
+						<view class="info">
+							<!--<view><text class="icon-attention"></text>{{item.BOARD_VIEW_CNT}}</view>-->
+							<view bind:tap="bindLikeTap" data-idx="{{index}}" data-id="{{item._id}}"><text class="icon-appreciate{{item.like?'fill text-white':''}}"></text>{{item.BOARD_LIKE_CNT}}</view>
+							<view bind:tap="url" data-url="../../comment/list/comment_list?id={{item._id}}&type=board"><text class="icon-comment"></text>{{item.BOARD_COMMENT_CNT}}</view>
+							<view bind:tap="bindFavTap" data-idx="{{index}}" data-id="{{item._id}}"><text class="icon-favor{{item.fav?'fill text-white':''}}"></text>{{item.BOARD_FAV_CNT}}</view>
+						</view>
+					</view>
+				</view>
+				<view class="oprt" wx:if="{{nowUserId==item.BOARD_USER_ID||isAdmin}}">
+				<!-- <view bindtap="url" data-url="../detail/board_detail?id={{item._id}}"><text class="icon-attention"></text>详情</view>  -->
+
+					<view class="bg-pink light" bindtap="bindStatusTap" data-id="{{item._id}}"><text class="icon-settings"></text>状态设定</view>
+
+					<view class="bg-blue light" bindtap="url" data-url="../edit/board_edit?id={{item._id}}"><text class="icon-edit"></text>编辑</view>
+
+					<view class="bg-orange light" bindtap="bindDelTap" data-id="{{item._id}}"><text class="icon-delete"></text>删除</view>
+				</view>
+			</block>
+		</view>
+
+		<!-- List END -->
+
+		<!--load begin-->
+		<import src="../../../../../tpls/public/list_load_tpl.wxml" />
+		<template is="listLoadTpl" data="{{skin:'load-project',dataList}}" />
+		<!--load end-->
+
+
+
+	</cmpt-comm-list>
+
+	<!--  button Begin -->
+	<!--  button END -->
+
+	<view wx:if="{{!isAdmin}}" class="post safe-bottom">
+		<view capture-bind:tap="bindPostTap" class="inner shadow-project bg-pink"><text class="icon-like margin-right-xs"></text>写表白</view>
+	</view>
+</block>

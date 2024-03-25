@@ -1,0 +1,82 @@
+<block wx:if="{{isAdmin&&isLoad}}">
+	<cmpt-comm-list source='admin' type="admin-lost-list" search="{{search||''}}" _menus="{{sortMenus}}" _items="{{sortItems}}" route="admin/lost_list" pulldownType="{{['modal','modal','modal']}}" sortMenusDefaultIndex="0" topBottom="50" placeholder="搜索" bind:list="bindCommListCmpt">
+
+		<view slot="searchEnd">
+			<button bindtap="url" data-url="../export/admin_lost_export" class="btn radius bg-admin text-white margin-right-s"><text class="icon-down margin-right-xxs"></text>导出数据</button>
+		</view>
+		<!-- List Begin -->
+		<view class="admin-comm-list">
+			<view wx:if="{{dataList && dataList.total }}" class="load text-grey">共有{{dataList.total}}条符合条件记录</view>
+
+			<view class="item" wx:for="{{dataList.list}}" wx:key="key">
+				<view class="no">{{index+1}}</view>
+				<view class="header">
+					<view class="left text-cut"><text wx:if="{{item.LOST_ORDER==0}}" class="text-black margin-right-xxs" style="font-weight:normal;font-size:24rpx">[置顶]</text>  {{item.LOST_OBJ.title}}
+					</view>
+					<view class="right">
+						<text wx:if="{{item.LOST_STATUS==1}}" class="text-green">「进行中」</text>
+						<text wx:elif="{{item.LOST_STATUS==0}}" class="text-grey">「已结束」</text>
+					</view>
+				</view>
+
+				<view class="info">
+					<view wx:if="{{cateIdOptions.length>1}}" class="info-item">
+						<view class="title">分类</view>
+						<view class="mao">：</view>
+						<view class="content">『{{item.LOST_CATE_NAME}}』</view>
+					</view>
+					
+					<view class="info-item" bind:tap="url" data-url="../../user/detail/admin_user_detail?id={{item.LOST_USER_ID}}">
+						<view class="title">用户</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.user.USER_NAME}} <text class="margin-left-s text-grey">[详情]</text></view>
+					</view>
+
+					<view class="info-item">
+						<view class="title">排序号</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.LOST_ORDER}} <text class="margin-left-xxs text-grey">(小的先显示)</text></view>
+					</view>
+
+					<view class="info-item">
+						<view class="title">数据</view>
+						<view class="mao">：</view>
+						<view class="content">浏览{{item.LOST_VIEW_CNT}}，收藏{{item.LOST_FAV_CNT}}，点赞{{item.LOST_LIKE_CNT}}</view>
+					</view>
+
+					<!--<view class="info-item" bind:tap="url" data-url="../../../comment/list/comment_list?source=admin&id={{item._id}}&type=lost">
+						<view class="title">评论</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.LOST_COMMENT_CNT}}条 <text class="margin-left-s text-blue">[管理]</text></view>
+					</view>-->
+
+					<view class="info-item">
+						<view class="title">创建</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.LOST_ADD_TIME}}</view>
+					</view>
+
+					<view class="oprt"> 
+
+						<view bindtap="bindStatusMoreTap" data-id="{{item._id}}" class="btn margin-right-s">状态管理</view>
+					 
+						<view data-idx="{{index}}"  bindtap="bindMoreTap" data-id="{{item._id}}" data-idx="{{index}}" data-qr="{{item.LOST_QR}}" data-title="{{item.LOST_TITLE}}" class="btn margin-right-s">更多操作</view> 
+						
+						<view bindtap="url"  data-url="../../preview/admin_preview?type=lost&id={{item._id}}" class="btn margin-right-s">查看详情</view>
+
+					</view>
+				</view>
+			</view>
+
+		</view>
+		<!-- List END -->
+
+		<!--load begin-->
+		<import src="../../../../../../tpls/public/list_load_tpl.wxml" />
+		<template is="listLoadTpl" data="{{dataList,skin:'text-grey'}}" />
+		<!--load end-->
+
+
+	</cmpt-comm-list>
+
+</block>

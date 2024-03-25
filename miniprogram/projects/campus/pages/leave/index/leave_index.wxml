@@ -1,0 +1,71 @@
+<view wx:if="{{!isLoad}}" class="margin-top load loading text-l load-project"></view>
+<block wx:if="{{isLoad}}">
+	<cmpt-comm-list id="leave-list" type="leave-list" search="{{search||''}}" _params="{{_params}}" _menus="{{sortMenus}}" _items="{{sortItems}}" route="leave/list" isTotalMenu="{{true}}" pulldownType="{{['modal','modal','modal']}}" sortMenusDefaultIndex="{{sortMenusDefaultIndex}}" topBottom="120" placeholder="搜索" bind:list="bindCommListCmpt">
+
+		<view slot="searchEnd">
+			<button bindtap="bindMyTap" class="btn round bg-project text-white margin-right-s"><text class="icon-moreandroid margin-right-xxs"></text>我的</button>
+		</view>
+
+		<!-- List Begin -->
+		<view class="list">
+			<block wx:for="{{dataList.list}}" wx:key="k">
+				<view class="item shadow-project" bindtap="url" data-url="../../leave/detail/leave_detail?id={{item._id}}">
+					<view class="left">
+						<view class="line1">
+							<view class="title content-cut-two">
+								<text>{{item.LEAVE_OBJ.title}}  <text wx:if="{{item.LEAVE_ORDER==0}}" class="tag small radius bg-blue light">置顶</text></text>
+							</view>
+						</view>
+						<view class="line-bottom">
+							<view class="line2 margin-top-xxs">
+								<text><text class="icon-attention margin-right-xxxs"></text>{{item.LEAVE_VIEW_CNT}}</text>
+								<text><text class="icon-appreciate{{item.like?'fill':''}} margin-right-xxxs"></text>{{item.LEAVE_LIKE_CNT}}</text>
+								<text><text class="icon-favor{{item.fav?'fill':''}} margin-right-xxxs"></text>{{item.LEAVE_FAV_CNT}}</text>
+							</view>
+							<view class="line2">
+								<text>{{item.LEAVE_ADD_TIME}}</text>
+								<text>#{{item.LEAVE_CATE_NAME}}</text>
+							</view>
+						</view>
+					</view>
+					<view class="right">
+						<view wx:if="{{item.LEAVE_STATUS==1}}" class="status bg-green light">出售中</view>
+						<view wx:elif="{{item.LEAVE_STATUS==0}}" class="status bg-grey light">已售出</view>
+						<image mode="aspectFill" lazy-load="{{true}}" class="loading" src="{{item.LEAVE_OBJ.pic[0]}}">
+						</image>
+					</view>
+
+					<view wx:if="{{nowUserId==item.LEAVE_USER_ID}}" class="mark-mine bg-brown light">我的</view>
+
+
+				</view>
+				<view class="oprt" wx:if="{{nowUserId==item.LEAVE_USER_ID||isAdmin}}">
+					<!--<view bindtap="url" data-url="../detail/leave_detail?id={{item._id}}"><text class="icon-attention"></text>详情</view>-->
+
+					<view class="bg-pink light" bindtap="bindStatusTap" data-id="{{item._id}}"><text class="icon-settings"></text>状态设定</view>
+
+					<view class="bg-blue light" bindtap="url" data-url="../edit/leave_edit?id={{item._id}}"><text class="icon-edit"></text>编辑</view>
+
+					<view class="bg-orange light" bindtap="bindDelTap" data-id="{{item._id}}"><text class="icon-delete"></text>删除</view>
+				</view>
+			</block>
+		</view>
+
+		<!-- List END -->
+
+		<!--load begin-->
+		<import src="../../../../../tpls/public/list_load_tpl.wxml" />
+		<template is="listLoadTpl" data="{{skin:'load-project',dataList}}" />
+		<!--load end-->
+
+
+
+	</cmpt-comm-list>
+
+	<!--  button Begin -->
+	<!--  button END -->
+
+	<view wx:if="{{!isAdmin}}" class="post safe-bottom">
+		<view capture-bind:tap="bindPostTap" class="inner shadow-project"><text class="icon-cartfill margin-right-xs"></text>发布闲置</view>
+	</view>
+</block>

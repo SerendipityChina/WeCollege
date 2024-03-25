@@ -1,0 +1,70 @@
+<view wx:if="{{isLoad===null}}" class="margin-top load notexist text-l load-project"></view>
+<view wx:if="{{isLoad===false}}" class="margin-top load loading text-l load-project"></view>
+
+<block wx:if="{{isLoad}}">
+	<view class="main padding-project">
+		<!-- article content begin -->
+		<view class="article card-project shadow-project">
+			<view wx:if="{{lost.LOST_STATUS==1}}" class="mark-status bg-green light">进行中</view>
+			<view wx:elif="{{lost.LOST_STATUS==0}}" class="mark-status bg-grey light">已结束</view>
+
+			<view class="title"><text user-select="true">{{lost.LOST_OBJ.title}}</text></view>
+			<view class="time">
+				<text><text class="icon-time margin-right-xxs" />{{lost.LOST_ADD_TIME}}</text>
+				<!--<text> {{lost.LOST_CATE_NAME}} </text>-->
+				<text><text class="icon-attention margin-right-xxxs" />{{lost.LOST_VIEW_CNT}}</text>
+			</view>
+
+			<view class="list">
+				<view class="item ">
+					<view class="left">类型</view>
+					<view class="right text-project text-bold">{{lost.LOST_CATE_NAME}} </view>
+				</view>
+
+				<view class="item" wx:key="key" wx:for="{{lost.LOST_FORMS}}">
+					<view class="left">{{item.title}}</view>
+					<view wx:if="{{item.type=='image'}}" class="right pics">
+						<image wx:for="{{item.val}}" wx:for-item="itm" wx:key="key1" bindtap="url" data-type="image" data-url="{{itm}}" src="{{itm}}" mode="aspectFill" class="loading" show-menu-by-longpress="{{true}}" />
+					</view>
+					<view wx:elif="{{item.type=='switch'}}" class="right">{{item.val===true?'是':'否'}} </view>
+					<view wx:else class="right" bind:tap="url" data-type="copy" data-url="{{item.val}}">{{item.val}} </view>
+				</view>
+			</view>
+
+			<!--
+				<view wx:if="{{lost.LOST_OBJ.desc}}" class="content">
+					<text user-select="{{true}}">{{lost.LOST_OBJ.desc}}</text>
+				</view>
+
+				<view wx:if="{{lost.LOST_OBJ.pic}}" class="pics" wx:for="{{lost.LOST_OBJ.pic}}" wx:key="k">
+					<image bindtap="url" data-type='img' data-url="{{item}}" show-menu-by-longpress="{{true}}" class="loading" mode='widthFix' lazy-load="true" src="{{item}}">
+					</image>
+				</view>
+
+
+				<block wx:if="{{lost.LOST_OBJ.content&&lost.LOST_OBJ.content.length>0}}" wx:for="{{lost.LOST_OBJ.content}}" wx:key="key">
+					<view class="content" wx:if="{{item.type=='text'}}">
+						<text user-select="{{true}}">{{item.val}}</text>
+					</view>
+
+					<view class="pics" wx:if="{{item.type=='img'}}">
+						<image bindtap="url" data-type='img' data-url="{{item.val}}" show-menu-by-longpress="{{true}}" class="loading" mode='widthFix' lazy-load="true" src="{{item.val}}">
+						</image>
+					</view>
+				</block>-->
+			<!-- article content end -->
+
+		</view>
+		<!-- article content end -->
+
+
+
+	</view>
+
+	<cmpt-detail mode="mode2" topBtnShow="{{topBtnShow}}" oid="{{lost._id}}" type="lost" cate="{{lost.LOST_CATE_NAME}}" title="{{lost.LOST_OBJ.title}}" cover="{{lost.LOST_OBJ.pic[0]||lost.LOST_OBJ.cover[0]||'/projects/campus/images/poster/lost.png'}}" qr="{{lost.LOST_QR}}" desc="查看详情" bg="{{skin.PROJECT_COLOR}}">
+		<view class="bottom-line">
+			<!--<view bindtap="url" data-url="../../comment/list/comment_list?id={{id}}&type=lost" class="oprt margin-right">{{lost.LOST_COMMENT_CNT}}评论 </view>-->
+			<view bindtap="bindLikeTap" class="oprt"><text class="icon-appreciate{{lost.like?'fill':''}} margin-right-xxs"></text>{{lost.LOST_LIKE_CNT}}点赞 <text></text></view>
+		</view>
+	</cmpt-detail>
+</block>

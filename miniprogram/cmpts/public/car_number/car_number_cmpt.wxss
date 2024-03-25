@@ -1,0 +1,163 @@
+root-portal {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+
+.root-portal {
+	position: fixed;
+	bottom: 0;
+	top: 0;
+	z-index: 9999999;
+	width: 100vw;
+	/* height: 200px; */
+	background: #fff;
+	opacity: 1;
+	transform: scale3d(1, 1, 1);
+	transition: all .2s ease-in;
+	pointer-events: auto;
+}
+
+.car-number {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20rpx 0;
+}
+
+.car-text { 
+	flex: 1;
+	text-align: right;
+	height: 60rpx;
+	line-height: 60rpx;
+}
+
+.car-split {
+	font-weight: bold;
+	font-size: 40rpx;
+	color: #666;
+}
+
+.car-number .item {
+	border: 2rpx solid #999;
+	border-radius: 10%;
+	padding: 10rpx 0;
+	margin: 10rpx 6rpx;
+	width: 70rpx;
+	height: 70rpx;
+	font-size: 28rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.car-number .item.new-energy {
+	border: 2rpx dashed #8dc63f;
+}
+
+.car-number .item.new-energy>text {
+	color: #8dc63f;
+	font-weight: bold;
+}
+
+
+.car-number .item.active {
+	border: 4rpx solid #4b71fc;
+	color: #4b71fc;
+}
+
+.confirm-car-number {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.confirm-car-number>text {
+	background-color: #4b71fc;
+	color: #fff;
+	width: 80%;
+	text-align: center;
+	font-size: 30rpx;
+	padding: 16rpx 0;
+	border-radius: 6rpx;
+	margin-top: 50rpx;
+}
+
+.confirm-car-number>text.distabled {
+	background-color: #f2f2f2;
+	color: #999;
+}
+
+.confirm-car-number.clear>text {
+	background-color: #cce6ff;
+	color: #347DFF;
+}
+
+.keyboard {
+	position: fixed;
+	bottom: 0;
+	/* height: 45vh; */
+	background-color: #d1d5d9;
+	width: 100%;
+	left: 0;
+	z-index: 9999;
+	/*苹果手机安全区域*/
+	padding-bottom: calc(constant(safe-area-inset-bottom) + 120rpx);
+	padding-bottom: calc(env(safe-area-inset-bottom) + 120rpx);
+}
+
+/* 关闭虚拟键盘 */
+.keyboard-close {
+	height: 80rpx;
+	line-height: 80rpx;
+	background-color: #f7f7f7;
+	overflow: hidden;
+}
+
+.keyboard-close-btn {
+	float: right;
+	line-height: 66rpx;
+	font-size: 30rpx;
+	padding-right: 30rpx;
+}
+
+.keyboard-item {
+	padding: 20rpx 0rpx;
+	position: relative;
+}
+
+.keyboard-line {
+	display: flex;
+	justify-content: center;
+	padding: 6rpx 2rpx;
+}
+
+/* 虚拟键盘-单个按钮 */
+.keyboard-btn {
+	font-size: 34rpx;
+	line-height: 40rpx;
+	color: #333333;
+	background: #fff;
+	display: inline-block;
+	padding: 16rpx;
+	text-align: center;
+	box-shadow: 0 2rpx 0 0 #999999;
+	border-radius: 10rpx;
+	margin: 6rpx;
+}
+
+/* 虚拟键盘-删除按钮 */
+.keyboard-del {
+	font-size: 34rpx;
+	line-height: 40rpx;
+	color: #333333;
+	background: #A7B0BC;
+	display: inline-block;
+	padding: 16rpx 12rpx;
+	box-shadow: 0 2rpx 0 0 #999999;
+	border-radius: 10rpx;
+	position: absolute;
+	bottom: 30rpx;
+	right: 18rpx;
+}

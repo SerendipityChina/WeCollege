@@ -1,0 +1,106 @@
+{
+	"pages": [
+		"projects/campus/pages/default/index/default_index",
+		"projects/campus/pages/about/index/about_index",
+		"projects/campus/pages/search/search",
+		"projects/campus/pages/my/index/my_index",
+		"projects/campus/pages/my/reg/my_reg",
+		"projects/campus/pages/my/edit/my_edit",
+		"projects/campus/pages/my/foot/my_foot",
+		"projects/campus/pages/my/fav/my_fav",
+		"projects/campus/pages/news/index/news_index",
+		"projects/campus/pages/news/detail/news_detail",
+		"projects/campus/pages/news/cate1/news_cate1",
+		"projects/campus/pages/admin/news/list/admin_news_list",
+		"projects/campus/pages/admin/news/add/admin_news_add",
+		"projects/campus/pages/admin/news/edit/admin_news_edit",
+		"projects/campus/pages/admin/setup/about/admin_setup_about",
+		"projects/campus/pages/admin/setup/about_list/admin_setup_about_list",
+		"projects/campus/pages/admin/setup/qr/admin_setup_qr",
+		"projects/campus/pages/admin/index/home/admin_home",
+		"projects/campus/pages/admin/index/login/admin_login",
+		"projects/campus/pages/admin/content/admin_content",
+		"projects/campus/pages/admin/preview/admin_preview",
+		"projects/campus/pages/admin/mgr/log/admin_log_list",
+		"projects/campus/pages/admin/mgr/edit/admin_mgr_edit",
+		"projects/campus/pages/admin/mgr/list/admin_mgr_list",
+		"projects/campus/pages/admin/mgr/add/admin_mgr_add",
+		"projects/campus/pages/admin/mgr/pwd/admin_mgr_pwd",
+		"projects/campus/pages/admin/user/list/admin_user_list",
+		"projects/campus/pages/admin/user/detail/admin_user_detail",
+		"projects/campus/pages/admin/user/export/admin_user_export",
+		"projects/campus/pages/board/index/board_index",
+		"projects/campus/pages/board/add/board_add",
+		"projects/campus/pages/board/edit/board_edit",
+		"projects/campus/pages/board/detail/board_detail",
+		"projects/campus/pages/admin/board/list/admin_board_list",
+		"projects/campus/pages/admin/board/export/admin_board_export",
+		"projects/campus/pages/job/index/job_index",
+		"projects/campus/pages/job/add/job_add",
+		"projects/campus/pages/job/edit/job_edit",
+		"projects/campus/pages/job/detail/job_detail",
+		"projects/campus/pages/admin/job/list/admin_job_list",
+		"projects/campus/pages/admin/job/export/admin_job_export",
+		"projects/campus/pages/lost/index/lost_index",
+		"projects/campus/pages/lost/add/lost_add",
+		"projects/campus/pages/lost/edit/lost_edit",
+		"projects/campus/pages/lost/detail/lost_detail",
+		"projects/campus/pages/admin/lost/list/admin_lost_list",
+		"projects/campus/pages/admin/lost/export/admin_lost_export",
+		"projects/campus/pages/leave/index/leave_index",
+		"projects/campus/pages/leave/add/leave_add",
+		"projects/campus/pages/leave/edit/leave_edit",
+		"projects/campus/pages/leave/detail/leave_detail",
+		"projects/campus/pages/admin/leave/list/admin_leave_list",
+		"projects/campus/pages/admin/leave/export/admin_leave_export",
+		"projects/campus/pages/comment/list/comment_list",
+		"projects/campus/pages/comment/add/comment_add",
+		"cmpts/public/form/form_set/field/form_set_field",
+		"cmpts/public/form/form_show/content/form_show_content",
+		"pages/test1/test1"
+	],
+	"window": {
+		"backgroundColor": "#f1f1f1",
+		"backgroundTextStyle": "dark",
+		"navigationBarBackgroundColor": "#636DEA",
+		"navigationBarTitleText": "校园生活圈小程序",
+		"navigationBarTextStyle": "white"
+	},
+	"tabBar": {
+		"custom": false,
+		"backgroundColor": "#FFFFFF",
+		"color": "#999999",
+		"selectedColor": "#636DEA",
+		"list": [
+			{
+				"pagePath": "projects/campus/pages/default/index/default_index",
+				"text": "首页",
+				"iconPath": "/projects/campus/images/tabbar/home.png",
+				"selectedIconPath": "/projects/campus/images/tabbar/home_cur.png"
+			},
+			{
+				"pagePath": "projects/campus/pages/news/index/news_index",
+				"text": "招生指南",
+				"iconPath": "/projects/campus/images/tabbar/news.png",
+				"selectedIconPath": "/projects/campus/images/tabbar/news_cur.png"
+			},
+			{
+				"pagePath": "projects/campus/pages/my/index/my_index",
+				"text": "我的",
+				"iconPath": "/projects/campus/images/tabbar/my.png",
+				"selectedIconPath": "/projects/campus/images/tabbar/my_cur.png"
+			}
+		]
+	},
+	"permission": {
+		"scope.userLocation": {
+			"desc": "获取你当前位置信息用于小程序位置接口的效果展示"
+		}
+	},
+	"usingComponents": {
+		"cmpt-comm-list": "/cmpts/public/list/comm_list_cmpt",
+		"cmpt-picker": "/cmpts/public/picker/picker_cmpt",
+		"cmpt-modal": "/cmpts/public/modal/modal_cmpt"
+	},
+	"sitemapLocation": "sitemap.json"
+}

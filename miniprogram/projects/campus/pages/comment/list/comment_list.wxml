@@ -1,0 +1,61 @@
+<block wx:if="{{isLoad}}">
+	<cmpt-comm-list type="comment-list" search="{{search||''}}" _params="{{_params}}" _menus="{{sortMenus}}" _items="{{sortItems}}" route="comment/list" isTotalMenu="{{true}}" sortMenusDefaultIndex="0" topBottom="120" placeholder="搜索内容，用户" bind:list="bindCommListCmpt">
+
+
+		<!-- List Begin -->
+		<view class="list">
+			<view class="item" wx:for="{{dataList.list}}" wx:key="k">
+				<view class="left">
+					<text wx:if="{{item.user.USER_OBJ.sex=='男'}}" class="sex bg-blue light"><text class="icon-male"></text></text>
+					<text wx:elif="{{item.user.USER_OBJ.sex=='女'}}" class="sex bg-red light"><text class="icon-female"></text></text>
+					<image class="loading shadow-project" mode="aspectFill" lazy-load="{{true}}" src="{{item.user.USER_PIC}}"></image>
+				</view>
+				<view class="right">
+					<view class="line1">
+						<text>{{item.user.USER_NAME}} </text>
+					</view>
+					<view class="line2">
+						<view>第{{index+1}}楼</view>
+						<view class="xx margin-left-xs margin-right-xs">|</view>
+						<view>{{item.COMMENT_ADD_TIME}}</view>
+						<view class="xx margin-left-xs margin-right-xs">|</view>
+						<view bind:tap="bindLikeTap" data-id="{{item._id}}" data-idx="{{index}}" class="like"><text class="icon-appreciate{{item.like?'fill':''}}">{{item.COMMENT_LIKE_CNT}}</text></view>
+					</view>
+
+					<view class="content"><text>{{item.COMMENT_OBJ.content}}</text></view>
+
+					<view class="album">
+						<image bindtap="url" data-type="img" data-imgs="{{item.COMMENT_OBJ.img}}" data-url="{{itm}}" wx:for="{{item.COMMENT_OBJ.img}}" wx:key="key1" wx:for-item="itm" class="loading  img{{item.COMMENT_OBJ.img.length}}" mode="aspectFill" lazy-load="{{true}}" src="{{itm}}"></image>
+					</view>
+
+					<view class="oprt" wx:if="{{nowUserId==item.COMMENT_USER_ID||isAdmin}}">
+						<view bindtap="bindDelTap" data-id="{{item._id}}" class="tag text-red light mid radius text-orange"><text class="icon-delete"></text>删除</view>
+					</view>
+
+
+				</view>
+
+
+			</view>
+
+
+
+			<!--load begin-->
+			<import src="../../../../../tpls/public/list_load_tpl.wxml" />
+			<template is="listLoadTpl" data="{{skin:'load-project',dataList}}" />
+			<!--load end-->
+
+		</view>
+		<!-- List END -->
+
+	</cmpt-comm-list>
+
+	<!--  button Begin -->
+	<!--  button END -->
+
+ 
+	<view wx:if="{{!isAdmin}}" class="post safe-bottom">
+		<view capture-bind:tap="url" data-url="../add/comment_add?id={{id}}&type={{type}}" class="inner shadow-project "><text class="icon-comment margin-right-xs"></text>写评论</view>
+	</view>
+
+</block>

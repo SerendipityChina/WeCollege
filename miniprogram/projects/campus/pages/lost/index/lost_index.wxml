@@ -1,0 +1,76 @@
+<view wx:if="{{!isLoad}}" class="margin-top load loading text-l load-project"></view>
+<block wx:if="{{isLoad}}">
+	<cmpt-comm-list id="lost-list" type="lost-list" search="{{search||''}}" _params="{{_params}}" _menus="{{sortMenus}}" _items="{{sortItems}}" route="lost/list" isTotalMenu="{{true}}" pulldownType="{{['modal','modal','modal']}}" sortMenusDefaultIndex="{{sortMenusDefaultIndex}}" topBottom="120" placeholder="搜索" bind:list="bindCommListCmpt">
+		<view slot="searchEnd">
+			<button bindtap="bindMyTap" class="btn round bg-project text-white margin-right-s"><text class="icon-moreandroid margin-right-xxs"></text>我的</button>
+		</view>  
+
+		<!-- List Begin -->
+		<view class="list">
+			<block wx:for="{{dataList.list}}" wx:key="k">
+				<view class="item shadow-project">
+					<text class="arrow icon-right"></text>
+
+					<view wx:if="{{nowUserId==item.LOST_USER_ID}}" class="mark-mine bg-brown light">我的</view>
+
+					<view wx:if="{{item.LOST_STATUS==1}}" class="mark-status bg-green light">进行中</view>
+					<view wx:elif="{{item.LOST_STATUS==0}}" class="mark-status bg-grey light">已结束</view>
+
+					<view class="top" bindtap="url" data-url="../detail/lost_detail?id={{item._id}}">
+						<!--<image class="left loading" mode="aspectFill" lazy-load="{{true}}" src="{{item.user.USER_PIC}}"></image>-->
+						<view class="right">
+							<view class="title">
+								<text class="name">
+									<text wx:if="{{item.LOST_CATE_ID==1}}" class="type bg-pink light">失</text><text wx:elif="{{item.LOST_CATE_ID==2}}" class="type bg-cyan light">拾</text>{{item.LOST_OBJ.title}} <text wx:if="{{item.LOST_ORDER==0}}" class="tag small radius bg-blue light">置顶</text>
+								</text>
+								<text class="date"></text>
+							</view>
+							<!--
+							<view class="desc">
+								<text class="t1"></text>
+								<text class="t2"> </text>
+							</view> -->
+							<view class="pic" wx:if="{{item.LOST_OBJ.pic}}">
+								<image wx:for="{{item.LOST_OBJ.pic}}" wx:key="key1" wx:for-item="itm" class="loading  img{{item.LOST_OBJ.pic.length}}" mode="aspectFill" lazy-load="{{true}}" src="{{itm}}"></image>
+							</view>
+						</view>
+					</view>
+					<view class="bottom">
+						<view class="info">
+							<view>{{item.LOST_ADD_TIME}}</view>
+							<view><text class="icon-attention"></text>{{item.LOST_VIEW_CNT}}</view>
+							<view bind:tap="bindLikeTap" data-idx="{{index}}" data-id="{{item._id}}"><text class="icon-appreciate{{item.like?'fill':''}}"></text>{{item.LOST_LIKE_CNT}}</view>
+							<view bind:tap="bindFavTap" data-idx="{{index}}" data-id="{{item._id}}"><text class="icon-favor{{item.fav?'fill':''}}"></text>{{item.LOST_FAV_CNT}}</view>
+						</view>
+					</view>
+				</view>
+				<view class="oprt" wx:if="{{nowUserId==item.LOST_USER_ID||isAdmin}}">
+					<!--<view bindtap="url" data-url="../detail/lost_detail?id={{item._id}}"><text class="icon-attention"></text>详情</view>-->
+
+					<view class="bg-pink light" bindtap="bindStatusTap" data-id="{{item._id}}"><text class="icon-settings"></text>状态设定</view>
+
+					<view class="bg-blue light" bindtap="url" data-url="../edit/lost_edit?id={{item._id}}"><text class="icon-edit"></text>编辑</view>
+
+					<view class="bg-orange light" bindtap="bindDelTap" data-id="{{item._id}}"><text class="icon-delete"></text>删除</view>
+				</view>
+			</block>
+		</view>
+
+		<!-- List END -->
+
+		<!--load begin-->
+		<import src="../../../../../tpls/public/list_load_tpl.wxml" />
+		<template is="listLoadTpl" data="{{skin:'load-project',dataList}}" />
+		<!--load end-->
+
+
+
+	</cmpt-comm-list>
+
+	<!--  button Begin -->
+	<!--  button END -->
+
+	<view wx:if="{{!isAdmin}}" class="post safe-bottom">
+		<view capture-bind:tap="bindPostTap" class="inner shadow-project"><text class="icon-forward margin-right-xs"></text>发布失物招领信息</view>
+	</view>
+</block>

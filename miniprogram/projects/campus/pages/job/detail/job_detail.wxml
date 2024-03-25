@@ -1,0 +1,63 @@
+<view wx:if="{{isLoad===null}}" class="margin-top load notexist text-l load-project"></view>
+<view wx:if="{{isLoad===false}}" class="margin-top load loading text-l load-project"></view>
+
+<block wx:if="{{isLoad}}">
+	<view class="main padding-project">
+		<!-- article content begin -->
+		<view class="article card-project shadow-project">
+			<view wx:if="{{job.JOB_STATUS==1}}" class="mark-status bg-green light">招聘中</view>
+			<view wx:elif="{{job.JOB_STATUS==0}}" class="mark-status bg-grey light">已结束</view>
+			<view class="title"><text user-select="true">{{job.JOB_OBJ.title}}</text></view>
+			<view class="time">
+				<text><text class="icon-time margin-right-xxs" />{{job.JOB_ADD_TIME}}</text>
+				<text><text class="icon-attention margin-right-xxxs" />{{job.JOB_VIEW_CNT}}</text>
+			</view>
+
+			<view class="list">
+				<view class="item" wx:key="key" wx:for="{{job.JOB_FORMS}}">
+					<view class="left">{{item.title}}</view>
+					<view wx:if="{{item.type=='image'}}" class="right pics">
+						<image wx:for="{{item.val}}" wx:for-item="itm" wx:key="key1" bindtap="url" data-type="image" data-url="{{itm}}" src="{{itm}}" mode="aspectFill" class="loading" show-menu-by-longpress="{{true}}" />
+					</view>
+					<view wx:elif="{{item.type=='switch'}}" class="right">{{item.val===true?'是':'否'}} </view>
+					<view wx:else class="right" bind:tap="url" data-type="copy" data-url="{{item.val}}">{{item.val}} </view>
+				</view>
+			</view>
+
+			<!--
+				<view wx:if="{{job.JOB_OBJ.desc}}" class="content">
+					<text user-select="{{true}}">{{job.JOB_OBJ.desc}}</text>
+				</view>
+
+				<view wx:if="{{job.JOB_OBJ.pic}}" class="pics" wx:for="{{job.JOB_OBJ.pic}}" wx:key="k">
+					<image bindtap="url" data-type='img' data-url="{{item}}" show-menu-by-longpress="{{true}}" class="loading" mode='widthFix' lazy-load="true" src="{{item}}">
+					</image>
+				</view>
+
+
+				<block wx:if="{{job.JOB_OBJ.content&&job.JOB_OBJ.content.length>0}}" wx:for="{{job.JOB_OBJ.content}}" wx:key="key">
+					<view class="content" wx:if="{{item.type=='text'}}">
+						<text user-select="{{true}}">{{item.val}}</text>
+					</view>
+
+					<view class="pics" wx:if="{{item.type=='img'}}">
+						<image bindtap="url" data-type='img' data-url="{{item.val}}" show-menu-by-longpress="{{true}}" class="loading" mode='widthFix' lazy-load="true" src="{{item.val}}">
+						</image>
+					</view>
+				</block>-->
+			<!-- article content end -->
+
+		</view>
+		<!-- article content end -->
+
+
+
+	</view>
+
+	<cmpt-detail mode="mode2" topBtnShow="{{topBtnShow}}" oid="{{job._id}}" type="job" cate="{{job.JOB_CATE_NAME}}" title="{{job.JOB_OBJ.title}}" cover="{{job.JOB_OBJ.pic[0]||job.JOB_OBJ.cover[0]||'/projects/campus/images/poster/job.png'}}" qr="{{job.JOB_QR}}" desc="查看详情" bg="{{skin.PROJECT_COLOR}}">
+		<view class="bottom-line">
+			<!--<view bindtap="url" data-url="../../comment/list/comment_list?id={{id}}&type=job" class="oprt margin-right">{{job.JOB_COMMENT_CNT}}评论 </view>-->
+			<view bindtap="bindLikeTap" class="oprt"><text class="icon-appreciate{{job.like?'fill':''}} margin-right-xxs"></text>{{job.JOB_LIKE_CNT}}点赞 <text></text></view>
+		</view>
+	</cmpt-detail>
+</block>

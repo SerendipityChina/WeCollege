@@ -1,0 +1,43 @@
+<view wx:if="{{isLoad===null}}" class="margin-top load notexist text-l load-project"></view>
+<view wx:if="{{isLoad===false}}" class="margin-top load loading text-l load-project"></view>
+
+<block wx:if="{{isLoad}}">
+	<view class="main padding-project">
+		<!-- article content begin -->
+		<view class="article card-project shadow-project">
+			<view wx:if="{{leave.LEAVE_STATUS==1}}" class="mark-status bg-green light">出售中</view>
+			<view wx:elif="{{leave.LEAVE_STATUS==0}}" class="mark-status bg-grey light">已售出</view>
+
+			<view class="title"><text user-select="true">{{leave.LEAVE_OBJ.title}}</text></view>
+			<view class="time">
+				<text><text class="icon-time margin-right-xxs" />{{leave.LEAVE_ADD_TIME}}</text>
+				<text> {{leave.LEAVE_CATE_NAME}} </text>
+				<text ><text class="icon-attention margin-right-xxxs" />{{leave.LEAVE_VIEW_CNT}}</text>
+			</view>
+
+			<view class="list">
+
+				<view class="item" wx:key="key" wx:for="{{leave.LEAVE_FORMS}}">
+					<view class="left">{{item.title}}</view>
+					<view wx:if="{{item.type=='image'}}" class="right pics">
+						<image wx:for="{{item.val}}" wx:for-item="itm" wx:key="key1" bindtap="url" data-type="image" data-url="{{itm}}" src="{{itm}}" mode="aspectFill" class="loading" show-menu-by-longpress="{{true}}" />
+					</view>
+					<view wx:elif="{{item.type=='switch'}}" class="right">{{item.val===true?'是':'否'}} </view>
+					<view wx:else class="right" bind:tap="url" data-type="copy" data-url="{{item.val}}">{{item.val}} </view>
+				</view>
+			</view>
+
+		</view>
+		<!-- article content end -->
+
+
+
+	</view>
+
+	<cmpt-detail mode="mode2" topBtnShow="{{topBtnShow}}" oid="{{leave._id}}" type="leave" cate="{{leave.LEAVE_CATE_NAME}}" title="{{leave.LEAVE_OBJ.title}}" cover="{{leave.LEAVE_OBJ.pic[0]||leave.LEAVE_OBJ.cover[0]||'/projects/campus/images/poster/leave.png'}}" qr="{{leave.LEAVE_QR}}" desc="查看详情" bg="{{skin.PROJECT_COLOR}}">
+		<view class="bottom-line">
+			<!--<view bindtap="url" data-url="../../comment/list/comment_list?id={{id}}&type=leave" class="oprt margin-right">{{leave.LEAVE_COMMENT_CNT}}评论 </view>-->
+			<view bindtap="bindLikeTap" class="oprt"><text class="icon-appreciate{{leave.like?'fill':''}} margin-right-xxs"></text>{{leave.LEAVE_LIKE_CNT}}点赞 <text></text></view>
+		</view>
+	</cmpt-detail>
+</block>

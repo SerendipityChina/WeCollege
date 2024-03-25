@@ -1,0 +1,171 @@
+@import "../../../style/skin.wxss";
+
+
+page {
+	background-color: #fff !important;
+}
+
+.main {
+	padding: 0
+}
+
+.list {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 15rpx 0;
+}
+
+.list .item {
+	width: 100%;
+	display: flex;
+	background-color: #fff;
+	padding: 20rpx 15rpx;
+	align-items: flex-start;
+	border-bottom: 2rpx dotted #ccc;
+}
+
+.list .item:nth-child(2n) {
+	background-color: #f8f8f8;
+}
+
+.list .left {
+	width: 80rpx;
+	height: 80rpx;
+	display: flex;
+	margin-right: 10rpx;
+	position: relative;
+}
+
+.list .left .sex {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 30rpx;
+	height: 30rpx;
+	font-size: 20rpx;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	margin-left: 10rpx;
+	z-index: 9;
+}
+
+.list .left>image {
+	width: inherit;
+	height: inherit;
+	border-radius: 50%;
+}
+
+.list .right {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding: 6rpx 10rpx;
+}
+
+.list .right .line1 {
+	text-align: left;
+	width: 100%;
+	font-size: 26rpx;
+	color: #666;
+	margin-bottom: 10rpx;
+	display: flex;
+	align-items: baseline;
+}
+
+.list .right .line2 {
+	display: flex;
+	align-items: baseline;
+	text-align: left;
+	width: 100%;
+	font-size: 22rpx;
+	color: #bbb;
+	height: 40rpx;
+}
+
+.list .right .line2 .xx {
+	color: #eee;
+}
+
+
+.list .right .line2 .like {
+	width: 230rpx;
+	height: inherit;
+}
+
+.list .right .content {
+	margin-top: 0rpx;
+	width: 100%;
+	display: flex;
+	font-size: 26rpx;
+	line-height: 1.4;
+	color: #333;
+}
+
+.list .right .album {
+	margin-top: 20rpx;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.list .right .album image {
+	height: 120rpx;
+	width: 120rpx;
+	margin-right: 10rpx;
+	margin-bottom: 10rpx;
+	border-radius: 10rpx;
+}
+
+.list .right .album image.img1 {
+	height: 230rpx;
+	width: 230rpx;
+}
+
+.list .right .album image.img2 {
+	height: 200rpx;
+	width: 200rpx;
+}
+
+.list .right .album image.img3,
+.list .right .album image.img4,
+.list .right .album image.img5,
+.list .right .album image.img6,
+.list .right .album image.img7,
+.list .right .album image.img8,
+.list .right .album image.img9 {
+	height: 170rpx;
+	width: 170rpx;
+}
+
+.list .right .oprt {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	padding: 5rpx 0;
+}
+
+
+
+.post {
+	width: 100%;
+	position: fixed;
+	left: 30rpx;
+	bottom: 80rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+
+.post>view {
+	z-index: 999;
+	font-size: 35rpx;
+	background-color: var(--projectColor);
+	color: #fff;
+	padding: 16rpx 160rpx;
+	border-radius: 40rpx;
+}

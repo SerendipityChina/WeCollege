@@ -1,0 +1,86 @@
+<wxs module="utils">
+	function join(arr) {
+		return arr.join('');
+	}
+
+	module.exports = {
+		join: join,
+	};
+</wxs>
+<view wx:if="{{!pop}}" bind:tap="bindShowPopTap" class="car-text">{{utils.join(carNumArr).length>0?utils.join(carNumArr):'请填写'}}<text class="icon-right"></text></view>
+
+<root-portal wx:elif="{{pop}}" enable="{{true}}">
+	<view class="root-portal">
+		<!-- 车牌号输入框 -->
+		<view class="car-number custom-input-class">
+			<view class="item {{curInput===0?'active':''}}" bind:tap="bindShowProvinceTap">{{carNumArr[0]}}</view>
+			<view class="item {{curInput===1?'active':''}}" bind:tap="bindShowAreaTap">{{carNumArr[1]}}</view>
+			<view class="car-split">·</view>
+			<view class="item {{curInput===2?'active':''}}" bind:tap="bindShowNumberTap" data-index="{{2}}">{{carNumArr[2]}}</view>
+			<view class="item {{curInput===3?'active':''}}" bind:tap="bindShowNumberTap" data-index="{{3}}">{{carNumArr[3]}}</view>
+			<view class="item {{curInput===4?'active':''}}" bind:tap="bindShowNumberTap" data-index="{{4}}">{{carNumArr[4]}}</view>
+			<view class="item {{curInput===5?'active':''}}" bind:tap="bindShowNumberTap" data-index="{{5}}">{{carNumArr[5]}}</view>
+			<view class="item {{curInput===6?'active':''}}" bind:tap="bindShowNumberTap" data-index="{{6}}">{{carNumArr[6]}}</view>
+			<view wx:if="{{!newEnergy}}" class="item new-energy" bind:tap="bindNewEnergyTap">
+				<text class="icon-add"></text>
+			</view>
+			<view wx:else class="item {{curInput===7?'active':''}}" bind:tap="bindShowLastBoardTap">{{carNumArr[7]}}</view>
+		</view>
+
+		<view wx:if="{{confirm}}" bind:tap="bindConfirmTap" class="confirm-car-number"><text>确定</text></view>
+		<view wx:else class="confirm-car-number"><text class="distabled">确定</text></view>
+
+		<view bind:tap="bindClearTap" class="confirm-car-number clear"><text>清空</text></view>
+
+		<!-- 虚拟键盘 -->
+		<view class="keyboard" hidden="{{!keyboard}}">
+			<view class="keyboard-close">
+				<view class="keyboard-close-btn" bindtap='bindCloseKeyboardTap'>关闭</view>
+			</view>
+			<!-- 省份简写键盘 -->
+			<view class="keyboard-item" wx:if="{{keyboardType===1}}">
+				<view class="keyboard-line" wx:for="{{provinces}}" wx:key="index">
+					<view class="keyboard-btn" wx:for="{{item}}" wx:key="index" data-val="{{itemlist}}" wx:for-item="itemlist" bindtap='bindChooseProvinceTap'>
+						{{itemlist}}
+					</view>
+				</view>
+				<view class="keyboard-del" bindtap="bindDelProvinceTap">
+					<text>清除</text>
+				</view>
+			</view>
+			<!-- 地区简写键盘 -->
+			<view class="keyboard-item" wx:if="{{keyboardType===2}}">
+				<view class="keyboard-line" wx:for="{{areas}}" wx:key="index">
+					<view class="keyboard-btn" wx:for="{{item}}" wx:key="index" data-val="{{itemlist}}" wx:for-item="itemlist" bindtap='bindChooseAreaTap'>
+						{{itemlist}}
+					</view>
+				</view>
+				<view class="keyboard-del" bindtap='bindDelAreaTap'>
+					<text>清除</text>
+				</view>
+			</view>
+			<!-- 普通类型键盘 -->
+			<view class="keyboard-item" wx:if="{{keyboardType===3}}">
+				<view class="keyboard-line" wx:for="{{numbers}}" wx:key="index">
+					<view class="keyboard-btn" wx:for="{{item}}" wx:key="index" data-val="{{itemlist}}" wx:for-item="itemlist" bindtap='bindChooseNumberTap'>
+						{{itemlist}}
+					</view>
+				</view>
+				<view class="keyboard-del" bindtap='bindDelNumberTap'>
+					<text>清除</text>
+				</view>
+			</view>
+			<!-- 最后一位键盘 -->
+			<view class="keyboard-item" wx:if="{{keyboardType===4}}">
+				<view class="keyboard-line" wx:for="{{last}}" wx:key="index">
+					<view class="keyboard-btn" wx:for="{{item}}" wx:key="index" data-val="{{itemlist}}" wx:for-item="itemlist" bindtap='bindChooseLastTap'>
+						{{itemlist}}
+					</view>
+				</view>
+				<view class="keyboard-del" bindtap='bindDelLastTap'>
+					<text>清除</text>
+				</view>
+			</view>
+		</view>
+	</view>
+</root-portal>
